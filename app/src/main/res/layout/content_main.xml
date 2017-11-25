@@ -1,0 +1,1250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:scrollbars="none"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:id="@+id/glavnivertikal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_light_background"
+            android:orientation="vertical">
+
+            <!--TEXT-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/relative_uvod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_marginRight="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView112"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/dodaj"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  UVOD"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView112"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="U početku beše reč."
+                        android:textColor="@color/SecondaryText"/>
+
+                    <EditText
+                        android:id="@+id/editText11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cardview_desc22"
+                        android:background="@android:color/white"
+                        android:cursorVisible="false"
+                        android:focusedByDefault="false"
+                        android:gravity="top"
+                        android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                        android:inputType="textMultiLine"
+                        android:maxLength="300"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="10dp"
+                        android:textSize="15sp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:paddingTop="15dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/relative_korisnik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+                    android:onClick="spinnerclick"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/korisnik"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  KORISNIK"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="35dp"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Odaberite ko ste danas,ali dobro razmislite pre nego što napravite izbor.Koga birate sad odjekuje u večnosti,obucite se toplo i pijte dosta tečnosti."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner3"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--LOKACIJA-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="lokacija"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/lokacija"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  LOKACIJA"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Samo ako ste 100% sigurni da znate gde se nalazite,popunite ovo polje.Ako postoji i jedan procenat sumnje preskočite ga bolje."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner4"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--OPIJAT-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="opijat"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/opijat"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  OPIJAT"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Ono što uzmeš te definiše k'o čoveka,a ono što propustiš te svakako čeka.U ovom ili sledećem životu."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner5"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--OPSTE-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="opstestanje"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/stanje"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  OPŠTE STANJE"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Uoči konzumacije.\nOpšte stanje.\nNišta više.\nNišta manje."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner18"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--RTN-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="rtn"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/rtn"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  RTN"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Opšti osećaj uduvanosti meren na osnovu klasične skale,kad su ti dve tužne ptice večnost dale."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner6"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--KACA-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="kaca"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/kaca"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  KACA"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Kako to narod u Makondu voli da kaže: dubina kace,dubina bunara,dubina ludila,evo Generala! "
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner7"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--MORE-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="more"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/more"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  MORE ILI OBLACI"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Ako je more verovatno je dole,a ako su oblaci onda gledaj gore."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner8"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--SVETLA-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="svetla"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/svetla"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  SVETLA"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Ko izađe poslednji nek ugasi svetlo,Jela Bilju u domu udarila metlom."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner9"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--UDARAC-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="udarac"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/udarac"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  UDARAC"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Udri je Reufe,majku joj kurvinu!"
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner10b"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinner10a"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/spinner10b"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinner10"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/spinner10a"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--AKTIVNOST-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="aktivnost"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/aktivnost"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  AKTIVNOST"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Šta radi komšiluk u ovo doba,čiji nam to glas dopire iz groba?"
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner11"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--YAKRIVLJNESOT-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="zakrivljenost"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/curve"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  ZAKRIVLJENOST"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Nije bitno dal je konkavno ili konveksno,ako si izdržao dovde u testu svakako si tresno."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner17"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--RTNK-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="rtnk"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/rtn"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  RTN KRTINIĆ"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text='Naduvanost merena po Krtinićevoj skali,što bi Babi Pupuška reko "svi moji ideali, veliki i mali, sa mnom su se skupa u groblje survali.Željan znanja, ljubavi i nauke, ja osetih samo patnje, samo teške muke!"'
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner12"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <!--KACA KRT-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="kacakrtinic"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/kaca"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  KACA KRTINIĆ"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Dubina olimpijskog bazena je dva metra, a dubina ludila po Krtiniću je izvan ovog sveta."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner13"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <!--NOGICE-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:onClick="nogice"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/nogice"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  NOGICE"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Samo nek je veselo,nek nogice igraju,dajte deci kučuele,nek puše dok imaju."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner14"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!--JAKNA-->
+
+            <!--DODATE-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/cardview_light_background"
+                android:elevation="0dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:elevation="4dp"
+
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/background_light"
+                        android:drawableLeft="@drawable/help"
+                        android:drawableTint="@color/colorPrimaryDark"
+
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="  ŠTA IMATE DA DODATE?"
+                        android:textAlignment="inherit"
+                        android:textColor="?attr/actionMenuTextColor"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/cardview_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView11"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="20dp"
+                        android:text="Šta imate da dodate?Nemam ništa da dodam,vikendom se skidam go i na rukama hodam."
+                        android:textColor="#808080"/>
+
+                    <Spinner
+                        android:id="@+id/spinner16"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+
+                        android:layout_below="@+id/cardview_desc"
+                        android:background="@android:color/background_light"
+                        android:paddingLeft="35dp"
+                        android:paddingRight="35dp"/>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.44"
+
+            android:orientation="vertical"
+            android:weightSum="1">
+
+
+            <EditText
+                android:id="@+id/textView100"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+
+            <EditText
+                android:id="@+id/textview800"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textView200"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview900"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview1000"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <TextView
+                android:id="@+id/textViewZlodi"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="TextView"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/textview500"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview1100"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview400"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview1200"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview300"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview600"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+            <EditText
+                android:id="@+id/textview700"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#006064</color>
+    <color name="colorPrimaryDark">#006064</color>
+    <color name="colorAccent">#f44336</color>
+
+
+    <color name="crna">#000000</color>
+    <color name="zeleb">#1f1f1f</color>
+    <color name="dugme">#bb1641</color>
+    <color name="bar">#1DE9B6</color>
+
+    <color name="PrimaryText">#212121</color>
+    <color name="SecondaryText">#757575</color>
+    <color name="bledo">#f8f8f8</color>
+</resources>

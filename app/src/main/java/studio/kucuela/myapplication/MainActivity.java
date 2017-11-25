@@ -51,7 +51,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    //PROBA GITA
+    // PROBA MAJKO PROBA!!!
 
     TextView textView100;
     TextView textView200;

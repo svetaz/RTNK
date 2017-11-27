@@ -10,16 +10,13 @@
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
 
 
-
-
     </style>
 
     <!-- Dart theme with an action bar -->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <!-- Light theme -->
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 
     <style name="MenuButtonsStyle">
@@ -49,12 +46,9 @@
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-light</item>
     </style>
 
+    <style name="Theme.AppCompat.Light..AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-
-
-
-
-
+    <style name="Theme.AppCompat.Light..PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 
 </resources>

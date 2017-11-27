@@ -13,4 +13,10 @@
     <color name="PrimaryText">#212121</color>
     <color name="SecondaryText">#757575</color>
     <color name="bledo">#f8f8f8</color>
+
+    <color name="myrandomcolor1">#946</color>
+    <color name="myrandomcolor2">#950684</color>
+
+
+
 </resources>

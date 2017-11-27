@@ -1,47 +1,34 @@
 package studio.kucuela.myapplication;
 
 
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorListener;
-import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.clans.fab.FloatingActionMenu;
+
+
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
-import com.jaredrummler.materialspinner.MaterialSpinner;
-import com.jaredrummler.materialspinner.MaterialSpinnerAdapter;
 import com.jrummyapps.android.animations.Technique;
-import com.skyfishjy.library.RippleBackground;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.util.Random;
@@ -49,9 +36,7 @@ import java.util.Random;
 
 
 
-public class MainActivity extends AppCompatActivity {
-
-    // PROBA MAJKO PROBA!!!
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView textView100;
     TextView textView200;
@@ -69,20 +54,7 @@ public class MainActivity extends AppCompatActivity {
     PullToRefreshView mPullToRefreshView;
 
 
-
-
-
-    private com.github.clans.fab.FloatingActionButton fab1;
-    private com.github.clans.fab.FloatingActionButton fab2;
-    private com.github.clans.fab.FloatingActionButton fab3;
-    private com.github.clans.fab.FloatingActionButton fab4;
-    private com.github.clans.fab.FloatingActionButton fab5;
-
-
-
-
-
-
+    private com.github.clans.fab.FloatingActionButton menu_green;
 
     Spinner sp;
     ArrayAdapter<String> adapter;
@@ -156,26 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner sp18;
     ArrayAdapter<String> adapter18;
-    String numbers18[] = {"","Dobro","Loše","Neutralno","Depresivno","Besno","Euforično","Histerično","Melanholično","Napaljeno","Gladno","Žedno","Umorno","Sveže","Bajato","Jedva gledam na oči",
+    String numbers18[] = {"","Dobro","Loše","Neutralno","Čudno","Depresivno","Besno","Euforično","Histerično","Melanholično","Napaljeno","Gladno","Žedno","Umorno","Sveže","Bajato","Jedva gledam na oči",
     "Jedva stojim na nogama","Imao/la sam i boljih dana","Ne mogu da se sastavim","Ne znam di bijem","Sad sam ustao/la","Spičim ovu pa u krevet","Spičim ovu pa na posao","Spičim ovu pa na kurs",
     "Spičim ovu pa idem malo napolje"};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -184,62 +139,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+
+
+        setContentView(R.layout.activity_drawer);
         info = (TextView) findViewById(R.id.textViewZlodi);
         input = (EditText)findViewById(R.id.editText11);
+
+
+
 
         mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                //REFRESH PULL ZA BRISANJE SVIH UNOSA BEZ RELOAD ACTIVITY
-                sp.setSelection(0,true);
-                sp1.setSelection(0,true);
-                sp2.setSelection(0,true);
-                sp6.setSelection(0,true);
-                sp7.setSelection(0,true);
-                sp8.setSelection(0,true);
-                sp9.setSelection(0,true);
-                sp10.setSelection(0,true);
-                sp10a.setSelection(0,true);
-                sp10b.setSelection(0,true);
-                sp11.setSelection(0,true);
-                sp12.setSelection(0,true);
-                sp13.setSelection(0,true);
-                sp14.setSelection(0,true);
-                sp16.setSelection(0,true);
-                sp17.setSelection(0,true);
-                sp18.setSelection(0,true);
-
-                ((EditText) findViewById(R.id.editText11)).setText("");
-
-                View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
-                //Snackbar.make(coordinatorLayout, "Svi unosi su obrisani", Snackbar.LENGTH_LONG).show();
-
-                //REFRESH PULL ZA RANDOM NASLOV NA TOOLBARU
-
-                String[] r1 = new String[] {"Science is curiosity, testing and experimenting. \n~ Venkatraman Ramakrishnan","Bog je stvorio Kučuelu da usavršava vernike. \n~ Autor nepoznat",
-                        "Za razliku od klasične lutrije u Kučueli svi dobijaju. \n~ Autor nepoznat","Postoje tri kosmosa u kosmosu i tri kosmosa izvan ovog kosmosa. \n~ Autor nepoznat",
-                        "Postoje dani koji mogu da se vraćaju i dani koji ne mogu. \n~ Autor nepoznat","Kučuela je veza između svetova. \n~ Autor nepoznat",
-                        "Prva limunada koju je Kučuela iscedila ljudima bila je voda sa vizijom. \n~ Autor nepoznat","Kučuela često ne zna gde udara,ali u svakom trenutku zna gde je naša glava. \n~ Autor nepoznat",
-                        "Legenda kaže da će jednoga dana ogledalo Komisije biti razbijeno,a Komisija rasterana zauvek. \n~ Autor nepoznat","Komisija ima više od osam,a manje od jedanaest članova. \n~ Autor nepoznat",
-                        "U Južne Krajeve mogu putovati samo oni koji spoznaše tajni nauk krompira \n~ Autor nepoznat","Duh kečapa se sastoji iz duha paradajza i duha samlevenosti. \n~ Autor nepoznat",
-                        "Svet je mantil, a svaki mantil ima dve strane:spoljašnju i unutrašnju. \n~ Autor nepoznat","Da te nije Kučuela sunce ne bi sijalo. \n~ " +
-                        "Autor nepoznat","Samo dobri ljudi mogu ulaziti u ptice. \n~ Autor nepoznat","Herb is the healing of a nation, alcohol is the destruction. \n~ Bob Marley",
-                        "When you smoke the herb, it reveals you to yourself. \n~ Bob Marley","Is weed addictive? Yes, in the sense that most of the pleasant things in life are worth repeating. \n~ Richard Neville",
-                        "People need to be educated to the fact that marijuana is not a drug.Its a flower.God put it here. \n~ Willie Nelson",
-                        "The biggest killer on the planet is stress and I think the best medicine is cannabis. \n~ Willie Nelson",
-                        "Stop killing each other man.Let’s just smoke a blunt. \n~ Tupac","What is a weed?A plant whose virtues have never been discovered. \n~ R.W.Emerson",
-                        "Kad Komisija kaže da ideš to je rešeno.Ideš-crtica-ideš! \n~ Autor nepoznat ","Prolaz je kapija ka drugoj dimenziji i njegova crvena svetla nisu vidljiva za svakoga. \n~ Autor nepoznat",
-                        "Atatulata Mahamua,tajni jezik svih stvari. \n~ Autor nepoznat","Svet je rotirajući džin plave boje,poznat još i pod imenom Haj Haj Džin.To je sve što postoji. \n~ Autor nepoznat",
-                        "Šta je Krmpota?Jel te zalepilo? \n~ Autor nepoznat","Šta je medeni?Jel te slomilo ko čokoladnog zeca? \n~ Autor nepoznat","Au Karumba!Au Tengba!Au Pemba! \n~ Autor nepoznat",
-                        "Šta je Bokili?Jel si se urokili? \n~ Autor nepoznat"};
-                int randomMsgIndex = new Random().nextInt(r1.length);
-
-                TextView naslov = (TextView) findViewById(R.id.naslov);
-                naslov.setText(r1[randomMsgIndex]);
-
 
 
 
@@ -247,12 +159,78 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        FloatingActionMenu menu_green = (FloatingActionMenu)findViewById(R.id.menu_green);
+                        //REFRESH PULL ZA BRISANJE SVIH UNOSA BEZ RELOAD ACTIVITY
+                        sp.setSelection(0,true);
+                        sp1.setSelection(0,true);
+                        sp2.setSelection(0,true);
+                        sp6.setSelection(0,true);
+                        sp7.setSelection(0,true);
+                        sp8.setSelection(0,true);
+                        sp9.setSelection(0,true);
+                        sp10.setSelection(0,true);
+                        sp10a.setSelection(0,true);
+                        sp10b.setSelection(0,true);
+                        sp11.setSelection(0,true);
+                        sp12.setSelection(0,true);
+                        sp13.setSelection(0,true);
+                        sp14.setSelection(0,true);
+                        sp16.setSelection(0,true);
+                        sp17.setSelection(0,true);
+                        sp18.setSelection(0,true);
 
+                        ((EditText) findViewById(R.id.editText11)).setText("");
+
+                        //View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
+                        //Snackbar.make(coordinatorLayout, "Svi unosi su obrisani", Snackbar.LENGTH_LONG).show();
+
+                        //REFRESH PULL ZA RANDOM NASLOV NA TOOLBARU
+
+                        String[] r1 = new String[] {"Science is curiosity, testing and experimenting. \n~ Venkatraman Ramakrishnan","Bog je stvorio Kučuelu da usavršava vernike. \n~ Autor nepoznat",
+                                "Za razliku od klasične lutrije u Kučueli svi dobijaju. \n~ Autor nepoznat","Postoje tri kosmosa u kosmosu i tri kosmosa izvan ovog kosmosa. \n~ Autor nepoznat",
+                                "Postoje dani koji mogu da se vraćaju i dani koji ne mogu. \n~ Autor nepoznat","Kučuela je veza između svetova. \n~ Autor nepoznat",
+                                "Prva limunada koju je Kučuela iscedila ljudima bila je voda sa vizijom. \n~ Autor nepoznat","Kučuela često ne zna gde udara,ali u svakom trenutku zna gde je naša glava. \n~ Autor nepoznat",
+                                "Legenda kaže da će jednoga dana ogledalo Komisije biti razbijeno,a Komisija rasterana zauvek. \n~ Autor nepoznat","Komisija ima više od osam,a manje od jedanaest članova. \n~ Autor nepoznat",
+                                "U Južne Krajeve mogu putovati samo oni koji spoznaše tajni nauk krompira \n~ Autor nepoznat","Duh kečapa se sastoji iz duha paradajza i duha samlevenosti. \n~ Autor nepoznat",
+                                "Svet je mantil, a svaki mantil ima dve strane:spoljašnju i unutrašnju. \n~ Autor nepoznat","Da te nije Kučuela sunce ne bi sijalo. \n~ " +
+                                "Autor nepoznat","Samo dobri ljudi mogu ulaziti u ptice. \n~ Autor nepoznat","Herb is the healing of a nation, alcohol is the destruction. \n~ Bob Marley",
+                                "When you smoke the herb, it reveals you to yourself. \n~ Bob Marley","Is weed addictive? Yes, in the sense that most of the pleasant things in life are worth repeating. \n~ Richard Neville",
+                                "People need to be educated to the fact that marijuana is not a drug.Its a flower.God put it here. \n~ Willie Nelson",
+                                "The biggest killer on the planet is stress and I think the best medicine is cannabis. \n~ Willie Nelson",
+                                "Stop killing each other man.Let’s just smoke a blunt. \n~ Tupac","What is a weed?A plant whose virtues have never been discovered. \n~ R.W.Emerson",
+                                "Kad Komisija kaže da ideš to je rešeno.Ideš-crtica-ideš! \n~ Autor nepoznat ","Prolaz je kapija ka drugoj dimenziji i njegova crvena svetla nisu vidljiva za svakoga. \n~ Autor nepoznat",
+                                "Atatulata Mahamua,tajni jezik svih stvari. \n~ Autor nepoznat","Svet je rotirajući džin plave boje,poznat još i pod imenom Haj Haj Džin.To je sve što postoji. \n~ Autor nepoznat",
+                                "Šta je Krmpota?Jel te zalepilo? \n~ Autor nepoznat","Šta je medeni?Jel te slomilo ko čokoladnog zeca? \n~ Autor nepoznat","Au Karumba!Au Tengba!Au Pemba! \n~ Autor nepoznat",
+                                "Šta je Bokili?Jel si se urokili? \n~ Autor nepoznat"};
+                        int randomMsgIndex = new Random().nextInt(r1.length);
+
+                        TextView naslov = (TextView) findViewById(R.id.naslov);
+                        naslov.setText(r1[randomMsgIndex]);
+                        com.github.clans.fab.FloatingActionButton menu_green = (com.github.clans.fab.FloatingActionButton)findViewById(R.id.menu_green);
                         Technique.BOUNCE_IN_UP.getComposer().duration(500).delay(0).playOn(menu_green);
                         mPullToRefreshView.setRefreshing(false);
+
+
+
+                        MediaPlayer mp;
+                        mp = MediaPlayer.create(MainActivity.this, R.raw.unlock);
+                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                // TODO Auto-generated method stub
+                                mp.reset();
+                                mp.release();
+                                mp=null;
+                            }
+
+                        });
+                        mp.start();
+
+
+
+
                     }
-                }, 500);
+                }, 400);
             }
         });
 
@@ -263,17 +241,13 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        fab1 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab1);
-        fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab2);
-        fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab3);
-        fab4 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab4);
-        fab5 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab5);
 
-        fab1.setOnClickListener(clickListener);
-        fab2.setOnClickListener(clickListener);
-        fab3.setOnClickListener(clickListener);
-        fab4.setOnClickListener(clickListener);
-        fab5.setOnClickListener(clickListener);
+        menu_green = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.menu_green);
+
+
+
+
+
 
 
 
@@ -333,10 +307,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //
+        //NAVIGATION DRAWER
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         //izlistati sve textview objekte
 
@@ -364,16 +343,10 @@ public class MainActivity extends AppCompatActivity {
         sp12=(Spinner)findViewById(R.id.spinner12) ;
         sp13=(Spinner)findViewById(R.id.spinner13) ;
         sp14=(Spinner)findViewById(R.id.spinner14) ;
-
         sp16=(Spinner)findViewById(R.id.spinner16) ;
         sp17=(Spinner)findViewById(R.id.spinner17) ;
         sp10b=(Spinner)findViewById(R.id.spinner10b) ;
         sp18=(Spinner)findViewById(R.id.spinner18) ;
-
-
-
-
-
 
 
 
@@ -779,103 +752,12 @@ public class MainActivity extends AppCompatActivity {
             {
                 // TODO Auto-generated method stub
             }
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+        });    }
 
 
 
 
     //FAB DUGMAD NOVA IMPLEMENTACIJA
-
-    private View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.fab1: //PODELI REZULTATE
-
-                    Intent sendIntent = new Intent();
-                    String date = String.valueOf(android.text.format.DateFormat.format("EE,dd.MMMM, HH:mm", new java.util.Date()));
-                    String inputText = input.getText().toString();
-                    info.setText(inputText);
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "REZULTATI TESTA"+"\n\nVREME: "+date+"\nKORISNIK: " + sp.getSelectedItem().toString()+"\nLOKACIJA: "
-                            +sp1.getSelectedItem().toString()+"\nOPIJAT: "+sp2.getSelectedItem().toString()
-                            +"\nSTANJE DUHA: "+sp18.getSelectedItem().toString()+
-                            "\n\nRTN: "+sp6.getSelectedItem().toString()+"\nKACA: "+sp7.getSelectedItem().toString()+"\nMORE/OBLACI: "
-                            +sp8.getSelectedItem().toString()+"\nSVETLA: "+sp9.getSelectedItem().toString()+"\nUDARAC: "+sp10b.getSelectedItem().toString()+"\n"+sp10.getSelectedItem().toString()+"/"+sp10a.getSelectedItem().toString()
-                            +"\nAKTIVNOST: "+sp11.getSelectedItem().toString()+"\nZAKRIVLJENOST: "+sp17.getSelectedItem().toString()+"\n\nRTN KRTINIĆ: "+sp12.getSelectedItem().toString()+"\nKACA KRTINIĆ: "
-                            +sp13.getSelectedItem().toString()+"\nNOGICE: "+sp14.getSelectedItem().toString()+"\nŠTA IMATE DA DODATE: "+"\n"+sp16.getSelectedItem().toString()+"\n\nI NA KRAJU SVEGA — UVOD: "+"\n"+input.getText());
-                    sendIntent.setType("text/plain");
-
-                    startActivity(sendIntent);
-
-
-
-                    break;
-                case R.id.fab2:
-
-                    final MediaPlayer mp12 = MediaPlayer.create(MainActivity.this, R.raw.prdavac);
-                    mp12.start();
-
-
-
-                    break;
-                case R.id.fab3:
-
-                    final MediaPlayer mp1 = MediaPlayer.create(MainActivity.this, R.raw.standard);
-                    mp1.start();
-
-
-                    break;
-                case R.id.fab4:
-
-                    final MediaPlayer mp2 = MediaPlayer.create(MainActivity.this, R.raw.domacinski);
-                    mp2.start();
-
-
-
-
-
-
-                    break;
-
-                case R.id.fab5:
-
-                    Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-                    whatsappIntent.setType("text/plain");
-                    whatsappIntent.setPackage("com.whatsapp");
-                    whatsappIntent.putExtra(Intent.EXTRA_TEXT, "*CING CING*");
-                    startActivity(whatsappIntent);
-
-
-
-
-
-
-                    break;
-
-
-            }
-        }
-    };
-
-
-
-
-
-
 
 
 
@@ -885,11 +767,11 @@ public class MainActivity extends AppCompatActivity {
     // Method(s) that manage Toolbar.
 
     // onCreateOptionsMenu method initialize the contents of the Activity's Toolbar.
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
 
     // Overrides setTitle method to support older api levels
@@ -898,7 +780,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -907,9 +789,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
-            /*Intent intent1 = new Intent(this, MainActivity.class);
+            *//*Intent intent1 = new Intent(this, MainActivity.class);
             startActivity(intent1);
-            finish();*/
+            finish();*//*
 
             new MaterialStyledDialog.Builder(this)
 
@@ -942,7 +824,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void spinnerclick (View view){
 
@@ -1056,26 +938,166 @@ public class MainActivity extends AppCompatActivity {
         Technique.LANDING.getComposer().duration(1500).delay(0).playOn(naslov);
 
 
-        FloatingActionMenu menu_green = (FloatingActionMenu)findViewById(R.id.menu_green);
+        com.github.clans.fab.FloatingActionButton menu_green = (com.github.clans.fab.FloatingActionButton)findViewById(R.id.menu_green);
 
        Technique.BOUNCE_IN_UP.getComposer().duration(500).delay(0).playOn(menu_green);
-
-
-
-
-
-
-
-
 
     }
 
 
-    
+    @Override
+    public void onBackPressed() {
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_prdavac) {
+
+
+
+            MediaPlayer mp;
+            mp = MediaPlayer.create(MainActivity.this, R.raw.prdavac);
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    // TODO Auto-generated method stub
+                    mp.reset();
+                    mp.release();
+                    mp=null;
+                }
+
+            });
+            mp.start();
+
+        } else if (id == R.id.nav_standard) {
+
+
+
+            MediaPlayer mp;
+            mp = MediaPlayer.create(MainActivity.this, R.raw.standard);
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    // TODO Auto-generated method stub
+                    mp.reset();
+                    mp.release();
+                    mp=null;
+                }
+
+            });
+            mp.start();
+
+        } else if (id == R.id.nav_domacinski) {
+
+            MediaPlayer mp;
+            mp = MediaPlayer.create(MainActivity.this, R.raw.domacinski);
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    // TODO Auto-generated method stub
+                    mp.reset();
+                    mp.release();
+                    mp=null;
+                }
+
+            });
+            mp.start();
+
+        } else if (id == R.id.nav_about) {
+
+            new MaterialStyledDialog.Builder(this)
+
+                    .setDescription("This is a simple material design app made for local weed smoking community.Cannabis,also known as marijuana among other names,is a psychoactive drug from the Cannabis plant intended for medical or recreational use.The main psychoactive part of cannabis is tetrahydrocannabinol (THC); one of 483 known compounds in the plant,including at least 65 other cannabinoids.Cannabis can be used by smoking, vaporizing, within food, or as an extract.This app is not promoting drug use and we will not be responsible for any loss or damage whatsoever caused by using it.\n")
+                    .setHeaderDrawable(R.drawable.weed)
+                    //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
+
+                    .setPositiveText("OK")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                            dialog.dismiss();
+                        }})
+
+                    .setNegativeText("GITHUB")
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                            String url = "https://github.com/svetaz";
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(url));
+                            startActivity(i);
+                        }})
+
+                    .show();
+
+        } else if (id == R.id.nav_changelog) {
+
+            new MaterialStyledDialog.Builder(this)
+
+                    .setTitle("Changelog")
+                    .setDescription("----- Verzija 6.5 -----\n\n * Dodat navigation drawer\n * Opcije iz FAB preseljene u navigation drawer\n * U pripremi dodavanje background service-a za notifikacije\n * Sklonjena CING-CING opcija zbog retke upotrebe\n * Dodat zvuk posle pull-to-refresh gesture-a")
+                    .setHeaderDrawable(R.drawable.log)
+                    .setScrollable(true)
+                    //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
+
+                    .setPositiveText("OK")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                            dialog.dismiss();
+                        }})
+
+                    .show();
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
 
 
 
+    public void dugme(View view) {
 
+
+
+
+        Intent sendIntent = new Intent();
+        String date = String.valueOf(android.text.format.DateFormat.format("EE,dd.MMMM, HH:mm", new java.util.Date()));
+        String inputText = input.getText().toString();
+        info.setText(inputText);
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "REZULTATI TESTA"+"\n\nVREME: "+date+"\nKORISNIK: " + sp.getSelectedItem().toString()+"\nLOKACIJA: "
+                +sp1.getSelectedItem().toString()+"\nOPIJAT: "+sp2.getSelectedItem().toString()
+                +"\nSTANJE DUHA: "+sp18.getSelectedItem().toString()+
+                "\n\nRTN: "+sp6.getSelectedItem().toString()+"\nKACA: "+sp7.getSelectedItem().toString()+"\nMORE/OBLACI: "
+                +sp8.getSelectedItem().toString()+"\nSVETLA: "+sp9.getSelectedItem().toString()+"\nUDARAC: "+sp10b.getSelectedItem().toString()+"\n"+sp10.getSelectedItem().toString()+"/"+sp10a.getSelectedItem().toString()
+                +"\nAKTIVNOST: "+sp11.getSelectedItem().toString()+"\nZAKRIVLJENOST: "+sp17.getSelectedItem().toString()+"\n\nRTN KRTINIĆ: "+sp12.getSelectedItem().toString()+"\nKACA KRTINIĆ: "
+                +sp13.getSelectedItem().toString()+"\nNOGICE: "+sp14.getSelectedItem().toString()+"\nŠTA IMATE DA DODATE: "+"\n"+sp16.getSelectedItem().toString()+"\n\nI NA KRAJU SVEGA — UVOD: "+"\n"+input.getText());
+        sendIntent.setType("text/plain");
+
+        startActivity(sendIntent);
+
+
+    }
 }
 //KRAJ

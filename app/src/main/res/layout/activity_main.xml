@@ -32,7 +32,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginBottom="110dp"
             app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="63dp"
+            app:expandedTitleMarginStart="83dp"
             app:layout_scrollFlags="enterAlwaysCollapsed">
 
 
@@ -51,11 +51,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="63dp"
+                android:layout_marginLeft="83dp"
                 android:layout_marginRight="48dp"
                 android:lines="4"
                 android:minLines="4"
-
+                android:onClick="promeniboju"
                 android:singleLine="false"
                 android:text='Science is curiosity, testing and experimenting. \nRamakrisna Maharaja'
                 android:textColor="@android:color/white"
@@ -70,7 +70,7 @@
         android:id="@+id/pull_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="145dp">
+        android:layout_marginTop="170dp">
 
         <include
             android:id="@+id/include"
@@ -82,65 +82,29 @@
     <!-- Floating action buttons are used for a special type of promoted action. They are distinguished by
     a circled icon floating above the UI and have special motion behaviors related to morphing, launching, and the transferring anchor point.  -->
 
-    <com.github.clans.fab.FloatingActionMenu
+    <com.github.clans.fab.FloatingActionButton
         android:id="@+id/menu_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp"
-
-
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
         android:elevation="20dp"
+        android:onClick="dugme"
+        android:src="@drawable/send"
         app:layout_anchor="@+id/pull_to_refresh"
         app:layout_anchorGravity="right|bottom"
+        app:menu_colorNormal="@color/colorAccent"
+        app:menu_colorPressed="@color/colorPrimaryDark"
+        app:menu_colorRipple="@color/colorPrimary"
+        app:menu_fab_size="normal"
         fab:menu_animationDelayPerItem="0"
-        fab:menu_icon="@drawable/add"
+        fab:menu_icon="@drawable/send"
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_maxLines="1"
         tools:layout_editor_absoluteX="-20dp">
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab5"
-            style="@style/MenuButtonsSmall.Green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/hitna"
-            fab:fab_label="Hitna Cing-Cing poruka"/>
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab4"
-            style="@style/MenuButtonsSmall.Green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/d"
-            fab:fab_label="Dopuš domaćinski"/>
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab3"
-            style="@style/MenuButtonsSmall.Green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/s"
-            fab:fab_label="Dopuš standardni"/>
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab2"
-            style="@style/MenuButtonsSmall.Green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/p"
-            fab:fab_label="Dopuš prdavac"/>
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab1"
-            style="@style/MenuButtonsSmall.Green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/send"
-            fab:fab_label="Pošalji rezultate"/>
-
-    </com.github.clans.fab.FloatingActionMenu>
+    </com.github.clans.fab.FloatingActionButton>
 
 
 </android.support.design.widget.CoordinatorLayout>

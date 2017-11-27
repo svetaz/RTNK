@@ -1140,109 +1140,12 @@
             android:weightSum="1">
 
 
-            <EditText
-                android:id="@+id/textView100"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-
-            <EditText
-                android:id="@+id/textview800"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textView200"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview900"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview1000"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
             <TextView
-                android:id="@+id/textViewZlodi"
+                android:id="@+id/info_text"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:text="TextView"
                 android:textColor="@android:color/white"/>
-
-            <EditText
-                android:id="@+id/textview500"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview1100"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview400"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview1200"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview300"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview600"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-            <EditText
-                android:id="@+id/textview700"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
 
         </LinearLayout>
 

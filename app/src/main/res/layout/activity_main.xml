@@ -55,7 +55,6 @@
                 android:layout_marginRight="48dp"
                 android:lines="4"
                 android:minLines="4"
-                android:onClick="promeniboju"
                 android:singleLine="false"
                 android:text='Science is curiosity, testing and experimenting. \nRamakrisna Maharaja'
                 android:textColor="@android:color/white"

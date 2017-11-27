@@ -1,7 +1,13 @@
 package studio.kucuela.myapplication;
 
 
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,11 +20,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +39,8 @@ import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.jrummyapps.android.animations.Technique;
 import com.yalantis.phoenix.PullToRefreshView;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -38,23 +48,13 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView textView100;
-    TextView textView200;
-    TextView textView300;
-    TextView textView400;
-    TextView textView500;
-    TextView textView600;
-    TextView textView700;
-    TextView textView800;
-    TextView textView900;
-    TextView textView1000;
+
     private TextView info;
     private EditText input;
-
     PullToRefreshView mPullToRefreshView;
-
-
     private com.github.clans.fab.FloatingActionButton menu_green;
+
+
 
     Spinner sp;
     ArrayAdapter<String> adapter;
@@ -135,19 +135,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_drawer);
-        info = (TextView) findViewById(R.id.textViewZlodi);
+        info = (TextView) findViewById(R.id.info_text);
         input = (EditText)findViewById(R.id.editText11);
 
 
 
 
+
+
+
+        // PULL TO REFRESH
         mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
@@ -238,17 +241,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
-
         menu_green = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.menu_green);
-
-
-
-
-
-
 
 
         //RANDOM NASLOV
@@ -274,21 +267,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView naslov = (TextView) findViewById(R.id.naslov);
         naslov.setText(r1[randomMsgIndex]);
 
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
         // Enables ActionBar app icon to behave as action to toggle NavigationDrawer
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -303,10 +281,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             actionBar.show();
         }
 
-
-
-
-
         //NAVIGATION DRAWER
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -318,17 +292,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         //izlistati sve textview objekte
-
-        textView100 = (TextView)findViewById(R.id.textView100);
-        textView200 = (TextView)findViewById(R.id.textView200);
-        textView300 = (TextView)findViewById(R.id.textview300);
-        textView400 = (TextView)findViewById(R.id.textview400);
-        textView500 = (TextView)findViewById(R.id.textview500);
-        textView600 = (TextView)findViewById(R.id.textview600);
-        textView700 = (TextView)findViewById(R.id.textview700);
-        textView800 = (TextView)findViewById(R.id.textview800);
-        textView900 = (TextView)findViewById(R.id.textview900);
-        textView1000 = (TextView)findViewById(R.id.textview1000);
 
         sp = (Spinner) findViewById(R.id.spinner3);
         sp1=(Spinner)findViewById(R.id.spinner4) ;
@@ -349,6 +312,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sp18=(Spinner)findViewById(R.id.spinner18) ;
 
 
+        //ADAPTERI ZA SPINERE+CLICK LISTENERI
 
         // IME
         adapter = new ArrayAdapter<String>(this,
@@ -756,15 +720,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+    // Overrides setTitle method to support older api levels [TOOLBAR and MENU]
+    @Override
+    public void setTitle(CharSequence title) {
+        getSupportActionBar().setTitle(title);
+    }
 
-    //FAB DUGMAD NOVA IMPLEMENTACIJA
-
-
-
-
-
-
-    // Method(s) that manage Toolbar.
+    // Method(s) that manage TOOLBAR and MENU
 
     // onCreateOptionsMenu method initialize the contents of the Activity's Toolbar.
     /*@Override
@@ -773,59 +735,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }*/
 
-
-    // Overrides setTitle method to support older api levels
-    @Override
-    public void setTitle(CharSequence title) {
-        getSupportActionBar().setTitle(title);
-    }
-
     /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
-            *//*Intent intent1 = new Intent(this, MainActivity.class);
-            startActivity(intent1);
-            finish();*//*
-
-            new MaterialStyledDialog.Builder(this)
-
-                    .setDescription("This is a simple material design app made for local weed smoking community.Cannabis,also known as marijuana among other names,is a psychoactive drug from the Cannabis plant intended for medical or recreational use.The main psychoactive part of cannabis is tetrahydrocannabinol (THC); one of 483 known compounds in the plant,including at least 65 other cannabinoids.Cannabis can be used by smoking, vaporizing, within food, or as an extract.This app is not promoting drug use and we will not be responsible for any loss or damage whatsoever caused by using it.\n")
-                    .setHeaderDrawable(R.drawable.weed)
-                    //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
-
-                    .setPositiveText("OK")
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
-                            dialog.dismiss();
-                        }})
-
-                    .setNegativeText("GITHUB")
-                    .onNegative(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
-                            String url = "https://github.com/svetaz";
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            startActivity(i);
-                        }})
-
-                    .show();
 
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }*/
 
+
+    //METODE ZA OTVARANJE SPINERA KLIKOM NA ODGOVARAJUCU KARTICU
     public void spinnerclick (View view){
 
         ((Spinner) findViewById(R.id.spinner3)).performClick();
@@ -910,6 +835,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    //ON RESUME RANDOM+ANIMATION
     @Override
     public void onResume () {
 
@@ -945,6 +871,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    //ONA BACK PRESSED DRAWER
     @Override
     public void onBackPressed() {
 
@@ -956,6 +883,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
+    //NAV DRAWER ITEM SELECTED
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -963,8 +892,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_prdavac) {
-
-
 
             MediaPlayer mp;
             mp = MediaPlayer.create(MainActivity.this, R.raw.prdavac);
@@ -982,8 +909,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mp.start();
 
         } else if (id == R.id.nav_standard) {
-
-
 
             MediaPlayer mp;
             mp = MediaPlayer.create(MainActivity.this, R.raw.standard);
@@ -1051,7 +976,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             new MaterialStyledDialog.Builder(this)
 
                     .setTitle("Changelog")
-                    .setDescription("----- Verzija 6.5 -----\n\n * Dodat navigation drawer\n * Opcije iz FAB preseljene u navigation drawer\n * U pripremi dodavanje background service-a za notifikacije\n * Sklonjena CING-CING opcija zbog retke upotrebe\n * Dodat zvuk posle pull-to-refresh gesture-a")
+                    .setDescription("----- Verzija 6.6 -----\n\n *Dodat sistem sa notifikacijama (experimentalna faza)\n\n----- Verzija 6.5 -----\n\n * Dodat navigation drawer\n * Opcije iz FAB preseljene u navigation drawer\n * U pripremi dodavanje background service-a za notifikacije\n * Sklonjena CING-CING opcija zbog retke upotrebe\n * Dodat zvuk posle pull-to-refresh gesture-a")
                     .setHeaderDrawable(R.drawable.log)
                     .setScrollable(true)
                     //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
@@ -1066,6 +991,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     .show();
 
+        } else if (id == R.id.nav_notifications) {
+
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.notifs,null);
+
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+
+            final Button dugmeon = (Button)mView.findViewById(R.id.button1) ;
+            final Button dugmeoff = (Button)mView.findViewById(R.id.button2) ;
+
+            dugmeon.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR_OF_DAY,21);
+                    calendar.set(Calendar.MINUTE,25);
+
+                    if (calendar.getTime().compareTo(new Date()) < 0) calendar.add(Calendar.DAY_OF_MONTH, 1);
+                    Intent intent = new Intent(getApplicationContext(),Notification_reciever.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
+                    dialog.dismiss();
+
+                    View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
+                    Snackbar.make(coordinatorLayout, "Notifikacije uključene", Snackbar.LENGTH_LONG).show();
+                }
+            });
+
+            dugmeoff.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(getApplicationContext(), Notification_reciever.class);
+                    PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, 0);
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                    alarmManager.cancel(sender);
+                    dialog.dismiss();
+
+                    View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
+                    Snackbar.make(coordinatorLayout, "Notifikacije isključene", Snackbar.LENGTH_LONG).show();
+                }
+            });
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -1075,11 +1051,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
+    //SHARE FAB
     public void dugme(View view) {
-
-
-
 
         Intent sendIntent = new Intent();
         String date = String.valueOf(android.text.format.DateFormat.format("EE,dd.MMMM, HH:mm", new java.util.Date()));
@@ -1099,5 +1072,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
 }
-//KRAJ
+
+//THIS IS THE END MY ONLY FRIEND

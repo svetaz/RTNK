@@ -92,7 +92,7 @@
         android:src="@drawable/send"
         app:layout_anchor="@+id/pull_to_refresh"
         app:layout_anchorGravity="right|bottom"
-        app:menu_colorNormal="@color/colorAccent"
+        app:menu_colorNormal="#e57373"
         app:menu_colorPressed="@color/colorPrimaryDark"
         app:menu_colorRipple="@color/colorPrimary"
         app:menu_fab_size="normal"

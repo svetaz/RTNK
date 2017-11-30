@@ -20,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.jrummyapps.android.animations.Technique;
 import com.yalantis.phoenix.PullToRefreshView;
 
@@ -53,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private EditText input;
     PullToRefreshView mPullToRefreshView;
     private com.github.clans.fab.FloatingActionButton menu_green;
+
+
+
+
 
 
 
@@ -144,6 +150,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         info = (TextView) findViewById(R.id.info_text);
         input = (EditText)findViewById(R.id.editText11);
 
+
+
+        MaterialSpinner spinner = (MaterialSpinner) findViewById(R.id.spinner);
+        spinner.setItems("Bojana", "Bojana iz Slankamena", "Bojana iz Krčedina", "Bojana Čorbašilov (Kazahstan)", "Bojana Donosilac Kiše", "Divna Maletin", "Bojana predstavnik Vodenih Ljudi", "Karumba",
+                "Tengba", "Pemba", "Minahonda", "Jajanda", "Svetozar", "Jorganče", "Sreten iz kupatila", "Gospodin sa bubama", "Advokat Krtinić", "Odvjetnik Krtilić","Gospodin Rtnić", "Kazuhiro", "Šojićiro",
+                "Hirokazu", "Mario Japanac", "General Rivotril", "General Rivotrilko", "Generalko Rivotrilko", "Generalčić Rivotrilčić", "Dona Esperansa","Desanka sa ogledalima","Magacionerka Rajka");
+        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+            }
+        });
 
 
 
@@ -754,6 +772,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void spinnerclick (View view){
 
         ((Spinner) findViewById(R.id.spinner3)).performClick();
+        ((MaterialSpinner) findViewById(R.id.spinner)).performClick();
 
     }
 
@@ -1008,15 +1027,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(View v) {
 
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.HOUR_OF_DAY,21);
-                    calendar.set(Calendar.MINUTE,25);
+                    Calendar cal1 = Calendar.getInstance();
+                    cal1.set(Calendar.HOUR_OF_DAY, 9);
+                    cal1.set(Calendar.MINUTE, 00);
+                    cal1.set(Calendar.SECOND, 00);
 
-                    if (calendar.getTime().compareTo(new Date()) < 0) calendar.add(Calendar.DAY_OF_MONTH, 1);
-                    Intent intent = new Intent(getApplicationContext(),Notification_reciever.class);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                    AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
+                    Calendar cal2 = Calendar.getInstance();
+                    cal2.set(Calendar.HOUR_OF_DAY, 15);
+                    cal2.set(Calendar.MINUTE, 00);
+                    cal2.set(Calendar.SECOND, 00);
+
+                    Calendar cal3 = Calendar.getInstance();
+                    cal3.set(Calendar.HOUR_OF_DAY, 21);
+                    cal3.set(Calendar.MINUTE, 00);
+                    cal3.set(Calendar.SECOND, 00);
+
+                    // Test if the times are in the past, if they are add one day
+                    Calendar now = Calendar.getInstance();
+                    if(now.after(cal1))
+                        cal1.add(Calendar.HOUR_OF_DAY, 24);
+                    if(now.after(cal2))
+                        cal2.add(Calendar.HOUR_OF_DAY, 24);
+                    if(now.after(cal3))
+                        cal3.add(Calendar.HOUR_OF_DAY, 24);
+
+                    /*Intent intent1 = new Intent(getApplicationContext(),Popup.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent1,PendingIntent.FLAG_UPDATE_CURRENT);*/
+                    //AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);*/
+
+                    // Create two different PendingIntents, they MUST have different requestCodes
+                    Intent intent = new Intent(MainActivity.this, Notification_reciever.class);
+                    PendingIntent morningAlarm = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+                    PendingIntent eveningAlarm = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+                    PendingIntent dayAlarm = PendingIntent.getBroadcast(getApplicationContext(), 2, intent, 0);
+
+                    // Start both alarms, set to repeat once every day
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal1.getTimeInMillis(), DateUtils.DAY_IN_MILLIS, morningAlarm);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal2.getTimeInMillis(), DateUtils.DAY_IN_MILLIS, eveningAlarm);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal3.getTimeInMillis(), DateUtils.DAY_IN_MILLIS, dayAlarm);
+
                     dialog.dismiss();
 
                     View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
@@ -1030,10 +1081,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onClick(View v) {
 
                     Intent intent = new Intent(getApplicationContext(), Notification_reciever.class);
-                    PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, 0);
+                    PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+                    PendingIntent sender2 = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+                    PendingIntent sender3 = PendingIntent.getBroadcast(getApplicationContext(), 2, intent, 0);
+
+
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                     alarmManager.cancel(sender);
+                    alarmManager.cancel(sender2);
+                    alarmManager.cancel(sender3);
                     dialog.dismiss();
 
                     View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
@@ -1054,18 +1111,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //SHARE FAB
     public void dugme(View view) {
 
+
+
+
         Intent sendIntent = new Intent();
         String date = String.valueOf(android.text.format.DateFormat.format("EE,dd.MMMM, HH:mm", new java.util.Date()));
         String inputText = input.getText().toString();
         info.setText(inputText);
         sendIntent.setAction(Intent.ACTION_SEND);
+
+        MaterialSpinner spinner;
+        spinner = (MaterialSpinner)findViewById(R.id.spinner);
+
         sendIntent.putExtra(Intent.EXTRA_TEXT, "REZULTATI TESTA"+"\n\nVREME: "+date+"\nKORISNIK: " + sp.getSelectedItem().toString()+"\nLOKACIJA: "
                 +sp1.getSelectedItem().toString()+"\nOPIJAT: "+sp2.getSelectedItem().toString()
                 +"\nSTANJE DUHA: "+sp18.getSelectedItem().toString()+
                 "\n\nRTN: "+sp6.getSelectedItem().toString()+"\nKACA: "+sp7.getSelectedItem().toString()+"\nMORE/OBLACI: "
                 +sp8.getSelectedItem().toString()+"\nSVETLA: "+sp9.getSelectedItem().toString()+"\nUDARAC: "+sp10b.getSelectedItem().toString()+"\n"+sp10.getSelectedItem().toString()+"/"+sp10a.getSelectedItem().toString()
                 +"\nAKTIVNOST: "+sp11.getSelectedItem().toString()+"\nZAKRIVLJENOST: "+sp17.getSelectedItem().toString()+"\n\nRTN KRTINIĆ: "+sp12.getSelectedItem().toString()+"\nKACA KRTINIĆ: "
-                +sp13.getSelectedItem().toString()+"\nNOGICE: "+sp14.getSelectedItem().toString()+"\nŠTA IMATE DA DODATE: "+"\n"+sp16.getSelectedItem().toString()+"\n\nI NA KRAJU SVEGA — UVOD: "+"\n"+input.getText());
+                +sp13.getSelectedItem().toString()+"\nNOGICE: "+sp14.getSelectedItem().toString()+"\nŠTA IMATE DA DODATE: "+"\n"+sp16.getSelectedItem().toString()+"\n\nI NA KRAJU SVEGA — UVOD: "+"\n"+input.getText()+spinner.getItems().get(spinner.getSelectedIndex()));
         sendIntent.setType("text/plain");
 
         startActivity(sendIntent);

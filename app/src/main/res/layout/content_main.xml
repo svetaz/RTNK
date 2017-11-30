@@ -161,6 +161,13 @@
                         android:paddingLeft="35dp"
                         android:paddingRight="35dp"/>
 
+                    <com.jaredrummler.materialspinner.MaterialSpinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/spinner3"
+                        android:hint="Odaberite korisnika"
+                        android:layout_height="wrap_content"/>
+
 
                 </RelativeLayout>
 

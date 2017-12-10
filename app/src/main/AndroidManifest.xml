@@ -12,9 +12,9 @@
     <application
         android:allowBackup="true"
         android:configChanges="keyboardHidden|orientation"
-        android:icon="@mipmap/ajkonica"
+        android:icon="@mipmap/add"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ajkonica"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.">
         <activity android:name=".MainActivity">

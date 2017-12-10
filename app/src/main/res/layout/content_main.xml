@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
 
     android:background="@color/cardview_light_background"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
     android:scrollbars="none"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -164,9 +164,10 @@
                     <com.jaredrummler.materialspinner.MaterialSpinner
                         android:id="@+id/spinner"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/spinner3"
                         android:hint="Odaberite korisnika"
-                        android:layout_height="wrap_content"/>
+                        android:visibility="gone"/>
 
 
                 </RelativeLayout>

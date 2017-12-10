@@ -7,10 +7,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -31,6 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -55,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private EditText input;
     PullToRefreshView mPullToRefreshView;
     private com.github.clans.fab.FloatingActionButton menu_green;
+
+    public static String NOTIF_MORNING = "notif_morning";
+    public static String NOTIF_DAY = "notif_day";
+    public static String NOTIF_EVENING = "notif_evening";
+    public static String NOTIF_SOUND = "notif_sound";
+    private SharedPreferences prefs;
 
 
 
@@ -145,10 +154,127 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         info = (TextView) findViewById(R.id.info_text);
         input = (EditText)findViewById(R.id.editText11);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        //provera podesenja
+        boolean morning = prefs.getBoolean(NOTIF_MORNING, false);
+        boolean day = prefs.getBoolean(NOTIF_DAY, false);
+        boolean evening = prefs.getBoolean(NOTIF_EVENING, false);
+
+
+        Calendar cal1 = Calendar.getInstance();
+        cal1.set(Calendar.HOUR_OF_DAY, 9);
+        cal1.set(Calendar.MINUTE, 00);
+        cal1.set(Calendar.SECOND, 00);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Calendar.HOUR_OF_DAY, 15);
+        cal2.set(Calendar.MINUTE, 00);
+        cal2.set(Calendar.SECOND, 00);
+
+        Calendar cal3 = Calendar.getInstance();
+        cal3.set(Calendar.HOUR_OF_DAY, 21);
+        cal3.set(Calendar.MINUTE, 00);
+        cal3.set(Calendar.SECOND, 00);
+
+        if (morning){
+            //code goes here
+            // Test if the times are in the past, if they are add one day
+            Calendar now = Calendar.getInstance();
+            if(now.after(cal1))
+                cal1.add(Calendar.HOUR_OF_DAY, 24);
+            if(now.after(cal2))
+                cal2.add(Calendar.HOUR_OF_DAY, 24);
+            if(now.after(cal3))
+                cal3.add(Calendar.HOUR_OF_DAY, 24);
+
+            // Create two different PendingIntents, they MUST have different requestCodes
+            Intent intent = new Intent(MainActivity.this, Notification_reciever.class);
+            PendingIntent morningAlarm = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+
+            // Start both alarms, set to repeat once every day
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal1.getTimeInMillis(), DateUtils.DAY_IN_MILLIS, morningAlarm);
+
+        }
+
+        if (morning==false){
+
+            Intent intent = new Intent(getApplicationContext(), Notification_reciever.class);
+            PendingIntent sender2 = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.cancel(sender2);
+
+        }
+
+
+        if (day){
+            //code goes here
+            //code goes here
+            // Test if the times are in the past, if they are add one day
+            Calendar now = Calendar.getInstance();
+            if(now.after(cal1))
+                cal1.add(Calendar.HOUR_OF_DAY, 24);
+            if(now.after(cal2))
+                cal2.add(Calendar.HOUR_OF_DAY, 24);
+            if(now.after(cal3))
+                cal3.add(Calendar.HOUR_OF_DAY, 24);
+
+            // Create two different PendingIntents, they MUST have different requestCodes
+            Intent intent = new Intent(MainActivity.this, Notification_reciever.class);
+            PendingIntent dayAlarm = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+
+            // Start both alarms, set to repeat once every day
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal2.getTimeInMillis(), DateUtils.DAY_IN_MILLIS, dayAlarm);
+        }
+
+        if (day==false){
+
+            Intent intent = new Intent(getApplicationContext(), Notification_reciever.class);
+            PendingIntent sender3 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.cancel(sender3);
+
+        }
+
+        if (evening){
+            //code goes here
+            //code goes here
+            // Test if the times are in the past, if they are add one day
+            Calendar now = Calendar.getInstance();
+            if(now.after(cal1))
+                cal1.add(Calendar.HOUR_OF_DAY, 24);
+            if(now.after(cal2))
+                cal2.add(Calendar.HOUR_OF_DAY, 24);
+            if(now.after(cal3))
+                cal3.add(Calendar.HOUR_OF_DAY, 24);
+
+            // Create two different PendingIntents, they MUST have different requestCodes
+            Intent intent = new Intent(MainActivity.this, Notification_reciever.class);
+            PendingIntent eveningAlarm = PendingIntent.getBroadcast(getApplicationContext(), 3, intent, 0);
+
+            // Start both alarms, set to repeat once every day
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal3.getTimeInMillis(), DateUtils.DAY_IN_MILLIS, eveningAlarm);
+        }
+
+        if (evening==false){
+
+            Intent intent = new Intent(getApplicationContext(), Notification_reciever.class);
+            PendingIntent sender4 = PendingIntent.getBroadcast(getApplicationContext(), 3, intent, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.cancel(sender4);
+        }
+
+
+
 
 
 
@@ -231,21 +357,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         mPullToRefreshView.setRefreshing(false);
 
 
+                        //provera podesenja
+                        boolean sound = prefs.getBoolean(NOTIF_SOUND, true);
 
-                        MediaPlayer mp;
-                        mp = MediaPlayer.create(MainActivity.this, R.raw.unlock);
-                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        if (sound) {
+                            MediaPlayer mp;
+                            mp = MediaPlayer.create(MainActivity.this, R.raw.unlock);
+                            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
-                            @Override
-                            public void onCompletion(MediaPlayer mp) {
-                                // TODO Auto-generated method stub
-                                mp.reset();
-                                mp.release();
-                                mp=null;
-                            }
+                                @Override
+                                public void onCompletion(MediaPlayer mp) {
+                                    // TODO Auto-generated method stub
+                                    mp.reset();
+                                    mp.release();
+                                    mp = null;
+                                }
 
-                        });
-                        mp.start();
+                            });
+                            mp.start();
+
+                        }
+
 
 
 
@@ -295,7 +427,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
             actionBar.setHomeButtonEnabled(false);
             getSupportActionBar().setDisplayShowTitleEnabled( true );
-            getSupportActionBar().setTitle("RTNK");
+            //getSupportActionBar().setTitle("RTNK");
+
             actionBar.show();
         }
 
@@ -927,6 +1060,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
             mp.start();
 
+            View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
+            Snackbar.make(coordinatorLayout, "Smotaj nam jedan prdavac \nod toga što je ostalo ...", Snackbar.LENGTH_LONG).show();
+
         } else if (id == R.id.nav_standard) {
 
             MediaPlayer mp;
@@ -943,6 +1079,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             });
             mp.start();
+            View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
+            Snackbar.make(coordinatorLayout, "Dopuš ... Molim dozvolu za dopuš!\nDopuš ... Molim dozvolu za dopuš!", Snackbar.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_domacinski) {
 
@@ -960,6 +1098,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             });
             mp.start();
+            View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
+            Snackbar.make(coordinatorLayout, "Smotaj nam jedan onako DOMAĆINSKI !", Snackbar.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_about) {
 
@@ -992,27 +1132,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_changelog) {
 
-            new MaterialStyledDialog.Builder(this)
+            android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.activity_about,null);
 
-                    .setTitle("Changelog")
-                    .setDescription("----- Verzija 6.6 -----\n\n *Dodat sistem sa notifikacijama (experimentalna faza)\n\n----- Verzija 6.5 -----\n\n * Dodat navigation drawer\n * Opcije iz FAB preseljene u navigation drawer\n * U pripremi dodavanje background service-a za notifikacije\n * Sklonjena CING-CING opcija zbog retke upotrebe\n * Dodat zvuk posle pull-to-refresh gesture-a")
-                    .setHeaderDrawable(R.drawable.log)
-                    .setScrollable(true)
-                    //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
 
-                    .setPositiveText("OK")
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 
-                            dialog.dismiss();
-                        }})
+            mBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-                    .show();
+            mBuilder.setView(mView);
+            android.app.AlertDialog dialog = mBuilder.create();
+            dialog.show();
 
         } else if (id == R.id.nav_notifications) {
 
-            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            /*AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
             View mView = getLayoutInflater().inflate(R.layout.notifs,null);
 
             mBuilder.setView(mView);
@@ -1028,18 +1166,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onClick(View v) {
 
                     Calendar cal1 = Calendar.getInstance();
-                    cal1.set(Calendar.HOUR_OF_DAY, 9);
-                    cal1.set(Calendar.MINUTE, 00);
+                    cal1.set(Calendar.HOUR_OF_DAY, 10);
+                    cal1.set(Calendar.MINUTE, 01);
                     cal1.set(Calendar.SECOND, 00);
 
                     Calendar cal2 = Calendar.getInstance();
-                    cal2.set(Calendar.HOUR_OF_DAY, 15);
-                    cal2.set(Calendar.MINUTE, 00);
+                    cal2.set(Calendar.HOUR_OF_DAY, 16);
+                    cal2.set(Calendar.MINUTE, 05);
                     cal2.set(Calendar.SECOND, 00);
 
                     Calendar cal3 = Calendar.getInstance();
-                    cal3.set(Calendar.HOUR_OF_DAY, 21);
-                    cal3.set(Calendar.MINUTE, 00);
+                    cal3.set(Calendar.HOUR_OF_DAY, 22);
+                    cal3.set(Calendar.MINUTE, 06);
                     cal3.set(Calendar.SECOND, 00);
 
                     // Test if the times are in the past, if they are add one day
@@ -1051,10 +1189,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if(now.after(cal3))
                         cal3.add(Calendar.HOUR_OF_DAY, 24);
 
-                    /*Intent intent1 = new Intent(getApplicationContext(),Popup.class);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent1,PendingIntent.FLAG_UPDATE_CURRENT);*/
+                    *//*Intent intent1 = new Intent(getApplicationContext(),Popup.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent1,PendingIntent.FLAG_UPDATE_CURRENT);*//*
                     //AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);*/
+                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);*//*
 
                     // Create two different PendingIntents, they MUST have different requestCodes
                     Intent intent = new Intent(MainActivity.this, Notification_reciever.class);
@@ -1096,7 +1234,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     View coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coord);
                     Snackbar.make(coordinatorLayout, "Notifikacije isključene", Snackbar.LENGTH_LONG).show();
                 }
-            });
+            });*/
+
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+
 
 
         }
@@ -1129,13 +1270,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 "\n\nRTN: "+sp6.getSelectedItem().toString()+"\nKACA: "+sp7.getSelectedItem().toString()+"\nMORE/OBLACI: "
                 +sp8.getSelectedItem().toString()+"\nSVETLA: "+sp9.getSelectedItem().toString()+"\nUDARAC: "+sp10b.getSelectedItem().toString()+"\n"+sp10.getSelectedItem().toString()+"/"+sp10a.getSelectedItem().toString()
                 +"\nAKTIVNOST: "+sp11.getSelectedItem().toString()+"\nZAKRIVLJENOST: "+sp17.getSelectedItem().toString()+"\n\nRTN KRTINIĆ: "+sp12.getSelectedItem().toString()+"\nKACA KRTINIĆ: "
-                +sp13.getSelectedItem().toString()+"\nNOGICE: "+sp14.getSelectedItem().toString()+"\nŠTA IMATE DA DODATE: "+"\n"+sp16.getSelectedItem().toString()+"\n\nI NA KRAJU SVEGA — UVOD: "+"\n"+input.getText()+spinner.getItems().get(spinner.getSelectedIndex()));
+                +sp13.getSelectedItem().toString()+"\nNOGICE: "+sp14.getSelectedItem().toString()+"\nŠTA IMATE DA DODATE: "+"\n"+sp16.getSelectedItem().toString()+"\n\nI NA KRAJU SVEGA — UVOD: "+"\n"+input.getText()/*+spinner.getItems().get(spinner.getSelectedIndex())*/);
         sendIntent.setType("text/plain");
+
+        //provera podesenja
+        boolean sound = prefs.getBoolean(NOTIF_SOUND, true);
+
+        if (sound) {
+            MediaPlayer mp;
+            mp = MediaPlayer.create(MainActivity.this, R.raw.effect);
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    // TODO Auto-generated method stub
+                    mp.reset();
+                    mp.release();
+                    mp = null;
+                }
+
+            });
+            mp.start();
+
+        }
 
         startActivity(sendIntent);
 
 
     }
+
+
+
+
 
 }
 

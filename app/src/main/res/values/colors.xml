@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#003d3f</color>
-    <color name="colorPrimaryDark">#007175</color>
-    <color name="colorAccent">#f44336</color>
+    <color name="colorPrimary">#00897b</color>
+    <color name="colorPrimaryDark">#00796b</color>
+    <color name="colorAccent">#aa00ff</color>
 
 
     <color name="crna">#000000</color>
     <color name="zeleb">#1f1f1f</color>
-    <color name="dugme">#bb1641</color>
-    <color name="bar">#1DE9B6</color>
+    <color name="dugme">#b0bb16</color>
+    <color name="bar">#1de9b6</color>
 
     <color name="PrimaryText">#212121</color>
     <color name="SecondaryText">#757575</color>

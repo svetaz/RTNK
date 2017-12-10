@@ -3,19 +3,73 @@
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <ListPreference
-        android:defaultValue="180"
-        android:entries="@array/pref_sync_frequency_titles"
-        android:entryValues="@array/pref_sync_frequency_values"
-        android:key="sync_frequency"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_sync_frequency"/>
 
-    <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
-         design guidelines. -->
-    <Preference android:title="@string/pref_title_system_sync_settings">
-        <intent android:action="android.settings.SYNC_SETTINGS"/>
-    </Preference>
+
+
+    <PreferenceCategory
+        android:title="Obaveštenja"
+
+
+
+        android:key="sync_settings">
+
+        <EditTextPreference
+            android:defaultValue="true"
+            android:key="text"
+            android:summary="Aplikacija ne sme biti podešena da se zatvora posle gašenja ekrana, ako želite da vam stižu obaveštenja.Molimo vas da proverite podešavanja u Settings > Battery > Close apps after screen lock"
+            />
+
+
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notif_morning"
+            android:icon="@drawable/jutro"
+            android:summaryOn="podsetićemo Vas da se naduvate ujutru"
+            android:summaryOff="nećete biti podsećani da se naduvate ujutru"
+            android:title="Jutarnje obaveštenje (09:00)" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notif_day"
+            android:icon="@drawable/dan"
+            android:summaryOn="podsetićemo Vas da se naduvate u toku dana"
+            android:summaryOff="nećete biti podsećani da se naduvate u toku dana"
+            android:title="Dnevno obaveštenje (15:00)" />
+
+        <SwitchPreference
+
+            android:defaultValue="false"
+            android:key="notif_evening"
+            android:icon="@drawable/noc"
+            android:summaryOn="podsetićemo Vas da se naduvate uveče"
+            android:summaryOff="nećete biti podsećani da se naduvate uveče"
+            android:title="Noćno obaveštenje (21:00)" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Zvuci"        >
+
+        <SwitchPreference
+
+            android:defaultValue="true"
+            android:key="notif_sound"
+            android:icon="@drawable/zvuk"
+            android:summary="uključite/isključite zvuke u aplikaciji"
+            android:summaryOn="zvukovi u aplikaciji su uključeni"
+            android:summaryOff="zvukovi u aplikaciji su isključeni"
+            android:title="Zvuci u aplikaciji"
+            />
+
+
+
+
+
+    </PreferenceCategory>
+
+
+
 
 </PreferenceScreen>

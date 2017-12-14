@@ -1215,6 +1215,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             dugmeoff.setOnClickListener(new View.OnClickListener() {
 
+
                 @Override
                 public void onClick(View v) {
 
